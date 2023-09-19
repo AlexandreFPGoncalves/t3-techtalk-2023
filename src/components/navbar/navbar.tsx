@@ -5,6 +5,7 @@ import { clsx } from "clsx";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { images } from "@/assets";
 import { Button } from "@/components";
+import Link from "next/link";
 
 export const Navbar: React.FC = () => {
   const { pathname } = useRouter();
@@ -12,14 +13,14 @@ export const Navbar: React.FC = () => {
 
   const navbarPaths: Path[] = [
     { name: "Home", href: "/" },
-    { name: "About us", href: "./" },
-    { name: "Tools", href: "./" },
+    { name: "About us", href: "/about" },
+    { name: "Tools", href: "/tools" },
   ];
 
   return (
-    <nav className="shadow-navbar fixed left-0 top-0 z-20 w-full backdrop-blur-sm">
+    <nav className="fixed left-0 top-0 z-20 w-full shadow-navbar backdrop-blur-sm">
       <div className="mx-auto flex max-w-screen-xl justify-between p-4">
-        <a href="./" className="flex items-center gap-6">
+        <Link href="/" className="flex items-center gap-6">
           <Image
             src={images.itsectorTemporaryLogo}
             width={32}
@@ -33,7 +34,7 @@ export const Navbar: React.FC = () => {
               TechTalk
             </span>
           </span>
-        </a>
+        </Link>
 
         {/* Links */}
         <div
@@ -43,18 +44,18 @@ export const Navbar: React.FC = () => {
           <ul className="flex space-x-8 font-semibold ">
             {navbarPaths.map((path, i) => (
               <li key={i}>
-                <a
+                <Link
                   href={path.href}
                   className={clsx(
                     "block transition-colors md:bg-transparent",
                     pathname === path.href
                       ? "text-accent-500 hover:text-accent-400"
-                      : "hover:text-accent-400 text-grey",
+                      : "text-grey hover:text-accent-400",
                   )}
                   aria-current="page"
                 >
                   {path.name}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -95,7 +96,7 @@ export const Navbar: React.FC = () => {
               viewBox="0 0 17 14"
             >
               <path
-                stroke="currentColor"
+                stroke="white"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="2"
