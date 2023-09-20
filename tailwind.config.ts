@@ -10,6 +10,7 @@ export default {
       boxShadow: {
         bgShadow: "inset 0px 0px 41px 18px rgba(0,0,0,0.05)",
         purple: "0px 0px 10px 1px linear-gradient(to right, #4165FF, #7241FF)",
+        red: "0px 0px 10px 1px linear-gradient(to right, #e11d47, #ef4443)",
         navbar: "0px 1px 3px 0px rgba(0,0,0,0.10)",
       },
       colors: {
@@ -18,11 +19,13 @@ export default {
         blue: "#4165FF",
         purple: "#7241FF",
       },
-      backgroundColor: {
-        "gradient-primary": `linear-gradient(to right, #4165FF, #7241FF`,
+      keyframes: {
+        breath: {
+          "50%": { opacity: "0.60" },
+        },
       },
-      borderColor: {
-        primary: "linear-gradient(to right, #4165FF, #7241FF",
+      animation: {
+        breath: "breath 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
     },
   },
