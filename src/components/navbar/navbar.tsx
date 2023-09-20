@@ -17,22 +17,16 @@ export const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className="shadow-navbar fixed left-0 top-0 z-20 w-full backdrop-blur-sm">
+    <nav className="fixed left-0 top-0 z-20 w-full shadow-navbar backdrop-blur-sm">
       <div className="mx-auto flex max-w-screen-xl justify-between p-4">
-        <a href="./" className="flex items-center gap-6">
+        <a href="./" className="flex items-center gap-2">
           <Image
-            src={images.itsectorTemporaryLogo}
+            src={images.itsector}
             width={32}
             height={32}
             alt="ShinyDexTracker"
           />
-          <span className="text-2xl font-bold text-white">
-            T3
-            <span className="bg-gradient-to-r from-[#4165FF] to-[#7241FF] bg-clip-text italic text-transparent">
-              {" "}
-              TechTalk
-            </span>
-          </span>
+          <span className="text-2xl font-bold text-white">ITSector</span>
         </a>
 
         {/* Links */}
@@ -49,7 +43,7 @@ export const Navbar: React.FC = () => {
                     "block transition-colors md:bg-transparent",
                     pathname === path.href
                       ? "text-accent-500 hover:text-accent-400"
-                      : "hover:text-accent-400 text-grey",
+                      : "text-grey hover:text-accent-400",
                   )}
                   aria-current="page"
                 >
