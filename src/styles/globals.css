@@ -7,10 +7,11 @@ body {
 }
 
 *::-webkit-scrollbar {
-  width: 3px;
+  width: 4px;
+  @apply bg-bg;
 }
 
 *::-webkit-scrollbar-thumb {
-  @apply bg-violet-600;
+  background: linear-gradient(0deg, #4165ff 0%, #7241ff 100%);
   border-radius: 12px;
 }
