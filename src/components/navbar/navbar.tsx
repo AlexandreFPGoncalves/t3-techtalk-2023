@@ -5,56 +5,65 @@ import { clsx } from "clsx";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { images } from "@/assets";
 import { Button } from "@/components";
+import Link from "next/link";
+import { useState } from "react";
+import { OpenIcon, CloseIcon } from "./index";
+
+interface NavbarResouces {
+  title: string;
+}
 
 export const Navbar: React.FC = () => {
   const { pathname } = useRouter();
   const { data: sessionData } = useSession();
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   const navbarPaths: Path[] = [
     { name: "Home", href: "/" },
-    { name: "About us", href: "./" },
-    { name: "Tools", href: "./" },
+    { name: "About us", href: "/about" },
+    { name: "Tools", href: "/tools" },
   ];
 
+  const resources: NavbarResouces = { title: "ITSector" };
+
   return (
-    <nav className="fixed left-0 top-0 z-20 w-full shadow-navbar backdrop-blur-sm">
-      <div className="mx-auto flex max-w-screen-xl justify-between p-4">
-        <a href="./" className="flex items-center gap-2">
+    <>
+      <nav className="fixed left-0 top-0 z-20 mx-auto hidden w-screen justify-between p-4 shadow-navbar backdrop-blur-sm md:flex">
+        <Link href="/" className="flex items-center gap-4">
           <Image
             src={images.itsector}
             width={32}
             height={32}
-            alt="ShinyDexTracker"
+            alt="itsector_logo"
           />
-          <span className="text-2xl font-bold text-white">ITSector</span>
-        </a>
+          <span className="text-2xl font-bold text-white">
+            {resources.title}
+          </span>
+        </Link>
 
         {/* Links */}
         <div
-          className="hidden w-full translate-x-[-3rem] items-center md:order-1 md:flex md:w-auto"
+          className="hidden w-full translate-x-[-3rem] items-center gap-4 md:order-1 md:flex md:w-auto"
           id="nav"
         >
-          <ul className="flex space-x-8 font-semibold ">
-            {navbarPaths.map((path, i) => (
-              <li key={i}>
-                <a
-                  href={path.href}
-                  className={clsx(
-                    "block transition-colors md:bg-transparent",
-                    pathname === path.href
-                      ? "text-accent-500 hover:text-accent-400"
-                      : "text-grey hover:text-accent-400",
-                  )}
-                  aria-current="page"
-                >
-                  {path.name}
-                </a>
-              </li>
-            ))}
-          </ul>
+          {navbarPaths.map((path, i) => (
+            <Link
+              key={i}
+              href={path.href}
+              className={clsx(
+                "font-semibold transition-colors md:bg-transparent",
+                pathname === path.href
+                  ? "text-accent-500 hover:text-accent-400"
+                  : "text-grey hover:text-accent-400",
+              )}
+              aria-current="page"
+            >
+              {path.name}
+            </Link>
+          ))}
         </div>
 
-        {/* Login and Burger Btn */}
+        {/* Login*/}
         <div className="flex md:order-2">
           <Button
             label={sessionData ? "Sign out" : "Sign in"}
@@ -62,43 +71,81 @@ export const Navbar: React.FC = () => {
               sessionData ? () => void signOut() : () => void signIn("google")
             }
           />
-
           {sessionData && (
             <Image
               src={sessionData?.user?.image ?? ""}
               alt="trainer profile picture"
               width={44}
               height={44}
-              className="ml-4 hidden rounded-full md:flex"
+              className="hidden rounded-full md:flex"
             />
           )}
+        </div>
+      </nav>
 
+      {/* Mobile */}
+      <nav className="fixed left-0 top-0 z-20 mx-auto flex w-screen flex-col justify-between p-4 shadow-navbar backdrop-blur-sm md:hidden">
+        <div className="flex w-full items-center justify-between">
+          <Link href="/" className="flex items-center gap-4">
+            <Image
+              src={images.itsector}
+              width={32}
+              height={32}
+              alt="itsector_logo"
+            />
+            <span className="text-2xl font-bold text-white">
+              {resources.title}
+            </span>
+          </Link>
           <button
-            data-collapse-toggle="nav"
-            type="button"
-            className="text-grey-500 hover:bg-grey-100 focus:ring-grey-200 dark:text-grey-400 dark:hover:bg-grey-700 dark:focus:ring-grey-600 inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm focus:outline-none focus:ring-2 md:hidden"
-            aria-controls="nav"
-            aria-expanded="false"
+            className="text-white"
+            onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
           >
-            <span className="sr-only">Open main menu</span>
-            <svg
-              className="h-5 w-5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 17 14"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M1 1h15M1 7h15M1 13h15"
-              />
-            </svg>
+            {isMobileNavOpen ? <CloseIcon /> : <OpenIcon />}
           </button>
         </div>
-      </div>
-    </nav>
+        {isMobileNavOpen && (
+          <div
+            className="flex w-full flex-col items-center gap-4 py-2"
+            id="nav"
+          >
+            {navbarPaths.map((path, i) => (
+              <Link
+                key={i}
+                href={path.href}
+                className={clsx(
+                  "font-semibold transition-colors md:bg-transparent",
+                  pathname === path.href
+                    ? "text-accent-500 hover:text-accent-400"
+                    : "text-grey hover:text-accent-400",
+                )}
+                aria-current="page"
+              >
+                {path.name}
+              </Link>
+            ))}
+            <div className="flex md:order-2">
+              <Button
+                label={sessionData ? "Sign out" : "Sign in"}
+                onClick={
+                  sessionData
+                    ? () => void signOut()
+                    : () => void signIn("google")
+                }
+              />
+              {sessionData && (
+                <Image
+                  src={sessionData?.user?.image ?? ""}
+                  alt="trainer profile picture"
+                  width={44}
+                  height={44}
+                  className="hidden rounded-full md:flex"
+                />
+              )}
+            </div>
+          </div>
+        )}
+      </nav>
+    </>
   );
 };
