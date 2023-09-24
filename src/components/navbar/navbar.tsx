@@ -9,6 +9,10 @@ import Link from "next/link";
 import { useState } from "react";
 import { OpenIcon, CloseIcon } from "./index";
 
+interface NavbarResouces {
+  title: string;
+}
+
 export const Navbar: React.FC = () => {
   const { pathname } = useRouter();
   const { data: sessionData } = useSession();
@@ -20,22 +24,20 @@ export const Navbar: React.FC = () => {
     { name: "Tools", href: "/tools" },
   ];
 
+  const resources: NavbarResouces = { title: "ITSector" };
+
   return (
     <nav className="fixed left-0 top-0 z-20 mx-auto flex w-screen flex-col items-center justify-center gap-4 p-4 shadow-navbar backdrop-blur-sm md:flex-row">
       <div className="flex w-full items-center justify-between md:w-auto md:flex-1 md:justify-center">
         <Link href="/" className="flex w-full items-center gap-6 p-2 md:w-auto">
           <Image
-            src={images.itsectorTemporaryLogo}
+            src={images.itsector}
             width={32}
             height={32}
-            alt="ShinyDexTracker"
+            alt="itsector_logo"
           />
           <span className="text-2xl font-bold text-white">
-            T3
-            <span className="bg-gradient-to-r from-[#4165FF] to-[#7241FF] bg-clip-text italic text-transparent">
-              {" "}
-              TechTalk
-            </span>
+            {resources.title}
           </span>
         </Link>
         <button
