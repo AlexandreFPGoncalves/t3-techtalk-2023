@@ -24,6 +24,9 @@ export default {
       borderColor: {
         primary: "linear-gradient(to right, #4165FF, #7241FF",
       },
+      screens: {
+        "until-md": { max: "767px" },
+      },
     },
   },
   plugins: [
