@@ -30,3 +30,24 @@
 `Temporary @assets`
 
 ## V0.1.4
+
+**New Packages**
+`npm i @radix-ui/react-icons`
+`npm i framer-motion`
+`npm install react-wrap-balancer`
+
+**New Components**
+`@components/hero/hero.tsx`
+`@components/link/link.tsx`
+
+**Screens Developed**
+`@pages/index.tsx`
+
+**Fixes**
+
+- Navbar bugfix + development
+
+> Screen has a background image with a background.
+> A PowerPoint type animation is currently being developed.
+
+## V0.1.5
