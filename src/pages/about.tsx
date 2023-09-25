@@ -1,7 +1,7 @@
 export default function About() {
   return (
     <div>
-      <h1>About us</h1>
+      <div className="w-full bg-red-800">About us</div>
     </div>
   );
 }
