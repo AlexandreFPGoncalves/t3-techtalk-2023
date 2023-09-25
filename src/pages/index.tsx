@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Button, Navbar } from "@/components";
 import { images } from "@/assets";
 import { Typography } from "@/components/typography";
+import Balancer from "react-wrap-balancer";
 
 interface HomeResources {
   title: { p1: string; p2: string; p3: string };
@@ -63,24 +64,29 @@ export default function Home() {
         </div>
 
         {/* Title */}
-        <h3 className="bold bg-gradient-to-r from-[#4165FF] to-[#7241FF] bg-clip-text text-center text-3xl font-bold text-transparent sm:text-5xl md:text-6xl lg:text-7xl">
-          {resources.title.p1}
-          <span className=" font-semibold text-white">
-            {resources.title.p2}
-          </span>
-        </h3>
-        <h3 className="text-center text-3xl font-semibold text-white sm:text-5xl md:text-6xl lg:text-7xl">
-          {resources.title.p3}
-        </h3>
+        {/* first usage of Balancer, for more info: https://react-wrap-balancer.vercel.app/ */}
+        <Balancer>
+          <h3 className="bold bg-gradient-to-r from-[#4165FF] to-[#7241FF] bg-clip-text text-center text-3xl font-bold text-transparent sm:text-5xl md:text-6xl lg:text-7xl">
+            {resources.title.p1}
+            <span className=" font-semibold text-white">
+              {resources.title.p2}
+            </span>
+          </h3>
+          <h3 className="text-center text-3xl font-semibold text-white sm:text-5xl md:text-6xl lg:text-7xl">
+            {resources.title.p3}
+          </h3>
+        </Balancer>
 
         {/* Subtitle */}
-        <h3 className="mb-8 text-center text-lg font-light text-grey sm:text-2xl">
-          {resources.subtitle}
-          <Typography.Animated
-            sequence={resources.sequence}
-            style="bg-gradient-to-r from-[#4165FF] to-[#7241FF] bg-clip-text font-semibold text-transparent"
-          />
-        </h3>
+        <Balancer>
+          <h3 className="mb-8 text-center text-lg font-light text-grey sm:text-2xl">
+            {resources.subtitle}
+            <Typography.Animated
+              sequence={resources.sequence}
+              style="bg-gradient-to-r from-[#4165FF] to-[#7241FF] bg-clip-text font-semibold text-transparent"
+            />
+          </h3>
+        </Balancer>
 
         {/* Button */}
         <Button

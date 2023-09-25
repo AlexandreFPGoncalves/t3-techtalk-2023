@@ -6,6 +6,11 @@ body {
   @apply font-Figtree;
 }
 
+body::before {
+  /* background glow */
+  @apply fixed inset-0 h-full w-full bg-[url("/bg-blur.svg")] bg-cover bg-center bg-no-repeat content-[''];
+}
+
 *::-webkit-scrollbar {
   width: 4px;
   @apply bg-bg;
