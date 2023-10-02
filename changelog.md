@@ -51,3 +51,6 @@
 > A PowerPoint type animation is currently being developed.
 
 ## V0.1.5
+
+> Navigation Module Development
+> Zustand Store Development
