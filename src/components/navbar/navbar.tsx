@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import Image from "next/image";
 import { type Path } from "@/utils/types";
 import { useRouter } from "next/router";
@@ -8,6 +9,7 @@ import { Button } from "@/components";
 import Link from "next/link";
 import { useState } from "react";
 import { OpenIcon, CloseIcon } from "./index";
+import { useNavigationStore } from "@/store";
 
 interface NavbarResouces {
   title: string;
@@ -17,10 +19,11 @@ export const Navbar: React.FC = () => {
   const { pathname } = useRouter();
   const { data: sessionData } = useSession();
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const { currentStep, resetCurrentStep } = useNavigationStore();
 
   const navbarPaths: Path[] = [
     { name: "Home", href: "/" },
-    { name: "About us", href: "/about" },
+    { name: "Docs", href: "/docs" },
     { name: "Tools", href: "/tools" },
   ];
 
@@ -51,13 +54,14 @@ export const Navbar: React.FC = () => {
       {/* Links */}
       <div
         data-ismobileopen={isMobileNavOpen}
-        className="until-md:data-[ismobileopen=true]:flex hidden w-full flex-col items-center gap-4 md:order-1 md:flex md:w-auto md:flex-1 md:flex-row md:justify-center"
+        className="hidden w-full flex-col items-center gap-4 md:order-1 md:flex md:w-auto md:flex-1 md:flex-row md:justify-center until-md:data-[ismobileopen=true]:flex"
         id="nav"
       >
         {navbarPaths.map((path, i) => (
           <Link
             key={i}
             href={path.href}
+            onClick={currentStep !== 0 ? resetCurrentStep : undefined}
             className={clsx(
               "font-semibold transition-colors md:bg-transparent",
               pathname === path.href
@@ -70,10 +74,9 @@ export const Navbar: React.FC = () => {
           </Link>
         ))}
       </div>
-
       <div
         data-ismobileopen={isMobileNavOpen}
-        className="until-md:data-[ismobileopen=true]:flex until-md:relative hidden w-full items-center justify-center gap-2 md:order-2 md:flex md:w-auto md:flex-1 md:justify-center"
+        className="hidden w-full items-center justify-center gap-2 md:order-2 md:flex md:w-auto md:flex-1 md:justify-center until-md:relative until-md:data-[ismobileopen=true]:flex"
       >
         <Button
           label={sessionData ? "Sign out" : "Sign in"}
@@ -81,13 +84,13 @@ export const Navbar: React.FC = () => {
             sessionData ? () => void signOut() : () => void signIn("google")
           }
         />
-        {sessionData && (
+        {sessionData && !isMobileNavOpen && (
           <Image
             src={sessionData?.user?.image ?? ""}
             alt="trainer profile picture flex"
             width={44}
             height={44}
-            className="until-md:absolute inset-y-0 right-4 rounded-full"
+            className="inset-y-0 right-4 rounded-full until-md:absolute"
           />
         )}
       </div>

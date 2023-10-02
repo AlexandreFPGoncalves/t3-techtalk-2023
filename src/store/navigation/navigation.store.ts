@@ -35,6 +35,16 @@ export const useNavigationStore =
           "decrementCurrentStep",
         );
       },
+      resetCurrentStep: function () {
+        set(
+          produce((state: UseNavigationState) => ({
+            ...state,
+            currentStep: 0,
+          })),
+          false,
+          "resetCurrentStep",
+        );
+      },
     }),
     "NavigationStore",
   );

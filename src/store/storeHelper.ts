@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 
-import create, {
+import {
+  create,
   type StateCreator,
   type StoreMutatorIdentifier,
 } from "zustand";
