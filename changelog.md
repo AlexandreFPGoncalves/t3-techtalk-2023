@@ -54,3 +54,9 @@
 
 > Navigation Module Development
 > Zustand Store Development
+
+## V0.1.6
+
+- Hosts screen development
+- General Bug Fixes
+- Docs Screen WIP

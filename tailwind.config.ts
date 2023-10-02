@@ -10,6 +10,7 @@ export default {
       boxShadow: {
         bgShadow: "inset 0px 0px 41px 18px rgba(0,0,0,0.05)",
         purple: "0px 0px 10px 1px linear-gradient(to right, #4165FF, #7241FF)",
+        red: "0px 0px 100px 0px rgba(167,137,255,0.25)",
         navbar: "0px 1px 3px 0px rgba(0,0,0,0.10)",
       },
       colors: {
@@ -27,6 +28,7 @@ export default {
         breath: "breath 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
       screens: {
+        "until-sm": { max: "639px" },
         "until-md": { max: "767px" },
       },
     },
