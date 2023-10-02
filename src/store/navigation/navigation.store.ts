@@ -15,21 +15,21 @@ export const useNavigationStore =
   StoreHelper.createStore<UseNavigationStoreOutput>(
     (set) => ({
       ...initialNavigationState,
-      incrementCurrentStep: function () {
+      incrementCurrentStep: function (currentStep: number) {
         set(
           produce((state: UseNavigationState) => ({
             ...state,
-            // currentStep: {...state, currentStep: currentStep},
+            currentStep: (currentStep += 1),
           })),
           false,
           "incrementCurrentStep",
         );
       },
-      decrementCurrentStep: function () {
+      decrementCurrentStep: function (currentStep: number) {
         set(
           produce((state: UseNavigationState) => ({
             ...state,
-            currentStep: (this.currentStep -= 1),
+            currentStep: (currentStep -= 1),
           })),
           false,
           "decrementCurrentStep",

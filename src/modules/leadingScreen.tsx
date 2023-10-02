@@ -17,7 +17,7 @@ interface LeadingPageResources {
 }
 
 export const LeadingScreen: React.FC = () => {
-  const { decrementCurrentStep, incrementCurrentStep } = useNavigationStore();
+  const { incrementCurrentStep } = useNavigationStore();
 
   const sequence = [
     "ReactJs.",
@@ -93,7 +93,7 @@ export const LeadingScreen: React.FC = () => {
         {/* Button */}
         <Button
           label={resources.startButton}
-          onClick={incrementCurrentStep}
+          onClick={() => incrementCurrentStep(0)}
           animated
         />
       </motion.div>
