@@ -1,13 +1,18 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { Link } from "../link";
 import { TriangleRightIcon, TriangleLeftIcon } from "@radix-ui/react-icons";
+import { useNavigationStore } from "@/store";
 
 interface HeroProps {
   children: React.ReactNode;
 }
 
 export const Hero: React.FC<HeroProps> = ({ children }) => {
+  const { currentStep, decrementCurrentStep, incrementCurrentStep } =
+    useNavigationStore();
+
   const [animaFinished, setAnimaFinished] = useState<boolean>(false);
 
   return (
@@ -33,11 +38,19 @@ export const Hero: React.FC<HeroProps> = ({ children }) => {
         transition={{ delay: 1 }}
         className="mt-4 flex w-full"
       >
-        <div className="flex w-1/2">
-          <Link label="Back" href="x" leftIcon={<TriangleLeftIcon />} />
+        <div className="flex w-1/2  cursor-pointer">
+          <Link
+            label="Back"
+            onClick={() => decrementCurrentStep(currentStep)}
+            leftIcon={<TriangleLeftIcon />}
+          />
         </div>
-        <div className="flex w-1/2 justify-end">
-          <Link label="Next" href="x" rightIcon={<TriangleRightIcon />} />
+        <div className="flex w-1/2 cursor-pointer justify-end">
+          <Link
+            label="Next"
+            onClick={() => incrementCurrentStep(currentStep)}
+            rightIcon={<TriangleRightIcon />}
+          />
         </div>
       </motion.div>
     </>
