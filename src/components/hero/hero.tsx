@@ -1,19 +1,22 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 import { motion } from "framer-motion";
 import React, { useState } from "react";
-import { Link } from "../link";
+import { Link, Stepper } from "../../components";
 import { TriangleRightIcon, TriangleLeftIcon } from "@radix-ui/react-icons";
 import { useNavigationStore } from "@/store";
 
 interface HeroProps {
   children: React.ReactNode;
+  onBack?: () => void;
+  onNext?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ children }) => {
+export const Hero: React.FC<HeroProps> = ({ children, onBack, onNext }) => {
   const { currentStep, decrementCurrentStep, incrementCurrentStep } =
     useNavigationStore();
 
-  const [animaFinished, setAnimaFinished] = useState<boolean>(false);
+  const [contentAnimaFinished, setContentAnimaFinished] =
+    useState<boolean>(false);
 
   return (
     <>
@@ -26,29 +29,36 @@ export const Hero: React.FC<HeroProps> = ({ children }) => {
           animate={{ height: "610px", padding: "1rem" }}
           transition={{ delay: 0.5 }}
           className={"h-0 rounded-3xl bg-bg"}
-          onAnimationComplete={() => setAnimaFinished(true)}
+          onAnimationComplete={() => setContentAnimaFinished(true)}
         >
-          {animaFinished && children}
+          {contentAnimaFinished && children}
         </motion.div>
       </motion.div>
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ delay: 1 }}
-        className="mt-4 flex w-full"
+        transition={{ delay: 2.2 }}
+        className="relative mt-4 flex w-full justify-between"
       >
-        <div className="flex w-1/2  cursor-pointer">
+        <div className="flex  cursor-pointer">
           <Link
             label="Back"
-            onClick={() => decrementCurrentStep(currentStep)}
+            onClick={
+              onBack ? () => onBack() : () => decrementCurrentStep(currentStep)
+            }
             leftIcon={<TriangleLeftIcon />}
           />
         </div>
-        <div className="flex w-1/2 cursor-pointer justify-end">
+        {currentStep === 2 && <Stepper />}
+
+        <div className="flex cursor-pointer justify-end">
           <Link
             label="Next"
-            onClick={() => incrementCurrentStep(currentStep)}
+            onClick={
+              onNext ? () => onNext() : () => incrementCurrentStep(currentStep)
+            }
             rightIcon={<TriangleRightIcon />}
           />
         </div>

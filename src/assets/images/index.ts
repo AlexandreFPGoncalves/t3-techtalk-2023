@@ -4,6 +4,7 @@ import stars from "./stars.svg";
 import host1 from "./host1.png";
 import host2 from "./host2.png";
 import host3 from "./host3.png";
+import robot from "./robot.svg";
 
 export const images = {
   itsector,
@@ -11,4 +12,5 @@ export const images = {
   host1,
   host2,
   host3,
+  robot,
 };
