@@ -44,7 +44,7 @@ export const Hosts: React.FC = () => {
         initial="hidden"
         animate="show"
         transition={{ delay: 0.75 }}
-        className="until-sm:flex-col flex h-full items-center justify-evenly"
+        className="flex h-full items-center justify-evenly until-sm:flex-col"
       >
         {hosts.map((host) => (
           <motion.div
@@ -63,7 +63,7 @@ export const Hosts: React.FC = () => {
                 )}&background=7241FF&color=fff`
               }
               alt={host.name}
-              className="shadow-red h-52 w-52 rounded-lg object-cover md:mb-2 until-md:h-32 until-md:w-32"
+              className="shadow-glow h-52 w-52 rounded-lg object-cover md:mb-2 until-md:h-32 until-md:w-32"
             />
             <motion.div
               initial={{ opacity: 0 }}
