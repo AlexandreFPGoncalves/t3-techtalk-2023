@@ -3,12 +3,8 @@
 @tailwind utilities;
 
 body {
-  @apply bg-bg bg-[url("/bg-blur.svg")] bg-center bg-no-repeat font-Figtree 2xl:bg-cover;
+  @apply bg-bg bg-[url("/bg-blur.svg")] bg-cover bg-top bg-no-repeat font-Figtree 2xl:bg-center;
 }
-
-/* body::before {
-  @apply fixed inset-0 h-full w-full  content-[''];
-} */
 
 *::-webkit-scrollbar {
   width: 4px;
