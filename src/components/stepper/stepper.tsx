@@ -1,13 +1,16 @@
-import { useNavigationStore } from "@/store";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 
 interface Steps {
+  id: number;
   name: string;
   isActive: boolean;
   isPast: boolean;
 }
 
+interface StepperProps {
+  activeStep?: number;
+}
 const InterActionStep = () => {
   return (
     <div className="flex gap-2 until-md:flex-col">
@@ -24,15 +27,31 @@ const InterActionStep = () => {
   );
 };
 
-export const Stepper: React.FC = () => {
-  const { currentStep } = useNavigationStore();
+export const Stepper: React.FC<StepperProps> = ({ activeStep = 0 }) => {
+  const [steps, setSteps] = useState<Steps[]>([
+    { id: 1, name: "Hosts", isActive: false, isPast: false },
+    { id: 2, name: "ReactJS", isActive: false, isPast: false },
+    { id: 3, name: "Stack T3", isActive: false, isPast: false },
+    { id: 4, name: "Partilha de Recursos", isActive: false, isPast: false },
+  ]);
 
-  const steps: Steps[] = [
-    { name: "React.Js", isActive: true, isPast: false },
-    { name: "Inicialização de um projeto T3", isActive: false, isPast: false },
-    { name: "T3Stack", isActive: false, isPast: false },
-    { name: "Partilha de Recursos", isActive: false, isPast: false },
-  ];
+  steps.find((step) => {
+    step.id === activeStep;
+  });
+
+  const updateSteps = (activeStep: number) => {
+    const updatedSteps = steps.map((step) => ({
+      ...step,
+      isActive: step.id === activeStep,
+      isPast: step.id < activeStep,
+    }));
+    setSteps(updatedSteps);
+    console.log("###", steps);
+  };
+
+  useEffect(() => {
+    updateSteps(activeStep);
+  }, [activeStep]);
 
   return (
     <div className="relative top-[-2.4375rem] flex w-full flex-wrap items-center justify-center gap-4 until-md:flex-col until-lg:hidden">
@@ -44,7 +63,7 @@ export const Stepper: React.FC = () => {
               !step.isActive
                 ? "cursor-not-allowed from-grey to-blue opacity-30"
                 : "from-blue to-purple shadow-purple",
-              step.isPast && "opacity-100",
+              step.isPast && "opacity-95",
             )}
           >
             <div

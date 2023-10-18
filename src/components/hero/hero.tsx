@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/unbound-method */
 import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { Link, Stepper } from "../../components";
@@ -9,9 +8,15 @@ interface HeroProps {
   children: React.ReactNode;
   onBack?: () => void;
   onNext?: () => void;
+  activeStep?: number;
 }
 
-export const Hero: React.FC<HeroProps> = ({ children, onBack, onNext }) => {
+export const Hero: React.FC<HeroProps> = ({
+  children,
+  onBack,
+  onNext,
+  activeStep,
+}) => {
   const { currentStep, decrementCurrentStep, incrementCurrentStep } =
     useNavigationStore();
 
@@ -51,7 +56,7 @@ export const Hero: React.FC<HeroProps> = ({ children, onBack, onNext }) => {
             leftIcon={<TriangleLeftIcon />}
           />
         </div>
-        {currentStep === 2 && <Stepper />}
+        {activeStep && <Stepper activeStep={activeStep} />}
 
         <div className="flex cursor-pointer justify-end">
           <Link

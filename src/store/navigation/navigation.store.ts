@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import produce from "immer";
 import { StoreHelper } from "../storeHelper";
 import type {

@@ -3,7 +3,7 @@ export interface UseNavigationState {
 }
 
 export interface UseNavigationStoreOutput extends UseNavigationState {
-  incrementCurrentStep(currentStep: number): void;
-  decrementCurrentStep(currentStep: number): void;
-  resetCurrentStep(): void;
+  incrementCurrentStep: (currentStep: number) => void;
+  decrementCurrentStep: (currentStep: number) => void;
+  resetCurrentStep: () => void;
 }

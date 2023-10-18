@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/unbound-method */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { motion } from "framer-motion";
 import React from "react";
 import Image from "next/image";
@@ -16,7 +14,7 @@ interface LeadingPageResources {
   sequence: (string | number)[];
 }
 
-export const LeadingScreen: React.FC = () => {
+export const LeadingScreenModule: React.FC = () => {
   const { incrementCurrentStep } = useNavigationStore();
 
   const sequence = [

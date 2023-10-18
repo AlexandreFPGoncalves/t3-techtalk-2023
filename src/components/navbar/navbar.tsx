@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/unbound-method */
 import Image from "next/image";
 import { type Path } from "@/utils/types";
 import { useRouter } from "next/router";
