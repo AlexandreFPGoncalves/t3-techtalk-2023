@@ -1,9 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
 import { Hero } from "@/components";
 import { images } from "@/assets";
 import Image from "next/image";
 import { motion } from "framer-motion";
-export const Hosts: React.FC = () => {
+
+export const HostsModule: React.FC = () => {
   const hosts = [
     {
       name: "Alexande Gonçalves",
@@ -38,7 +38,7 @@ export const Hosts: React.FC = () => {
   };
 
   return (
-    <Hero>
+    <Hero activeStep={1}>
       <motion.div
         variants={container}
         initial="hidden"
@@ -63,7 +63,7 @@ export const Hosts: React.FC = () => {
                 )}&background=7241FF&color=fff`
               }
               alt={host.name}
-              className="shadow-glow h-52 w-52 rounded-lg object-cover md:mb-2 until-md:h-32 until-md:w-32"
+              className="h-52 w-52 rounded-lg object-cover shadow-glow md:mb-2 until-md:h-32 until-md:w-32"
             />
             <motion.div
               initial={{ opacity: 0 }}

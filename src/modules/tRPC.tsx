@@ -6,21 +6,21 @@ import { images } from "@/assets";
 import Image from "next/image";
 import { snippets } from "../utils/snippets";
 
-interface ReactJsResources {
+interface tRPCResources {
   title: string;
   intro: string;
   description?: string;
   snippet?: string;
 }
 
-export const ReactjsModule: React.FC = () => {
+export const TRPCModule: React.FC = () => {
   const [internalStep, setInternalStep] = useState<number>(0);
   const { currentStep, decrementCurrentStep, incrementCurrentStep } =
     useNavigationStore();
 
-  const resources: ReactJsResources[] = [
+  const resources: tRPCResources[] = [
     {
-      title: "React.JS",
+      title: "tRPC",
       intro:
         "O React é uma biblioteca de Javascript que facilita a criação de UIs interativas. Desenvolvido pelo Facebook com lançamento em 2013, tem vindo a ser um dos destaques mais influentes do mercado atual",
       description:
