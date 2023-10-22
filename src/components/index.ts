@@ -7,3 +7,5 @@ export * from "./stepper";
 export * from "./divider";
 export * from "./codeSnippet";
 export * from "./tableOfContents";
+export * from "./blog";
+export * from "./trianguleButton";

@@ -4,38 +4,13 @@ import { useNavigationStore } from "@/store";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 import Image from "next/image";
-import { snippets } from "@/utils/snippets";
-import type { ModuleScreen } from "@/utils/types";
+import { textResources } from "@/utils/resources";
 
 export const TypeScriptModule = () => {
+  const { typescriptResources: resources } = textResources;
   const [internalStep, setInternalStep] = useState<number>(0);
   const { currentStep, decrementCurrentStep, incrementCurrentStep } =
     useNavigationStore();
-
-  const resources: ModuleScreen[] = [
-    {
-      title: "Typescript",
-      intro:
-        "O Javascript é uma terra sem grandes regras, podemos referenciar variáveis que não existem ou até mesmo trabalhar com objetos sem forma definida, o código é então interpretado por um browser, mas caso exista algum erro só vai ser descoberto quando a aplicação estiver a correr, o Typescript previne estes erros de sequer acontecerem estendendo o Javascript com tipagens",
-      description:
-        "Tipagens estas que fazem parte do superset que é um conjunto de ferramentas montado em cima do Javascript onde são devolvidas tipagens estáticas, parâmetros e retornos",
-      snippet: snippets.typescriptErrors,
-    },
-    {
-      title: "Configuração",
-      intro:
-        "O Typescript permite também, através do ficheiro tsconfig, criar uma experiência única de utilização para cada projeto e desenvolvedor modificando as regras de utilização do mesmo",
-      description:
-        "Uma das funcionalidades principais do Typescript é a tipagem estática que conta com explicit e implicit types",
-      snippet: snippets.typescriptStaticTypes,
-    },
-    {
-      title: "Utilização do Typescript",
-      intro:
-        "Neste pequeno exemplo podemos ver a diferença de dois componentes onde um tem acesso a tipagem definida por nós e algumas props são marcadas como sendo obrigatórias",
-      snippet: snippets.typescriptExample,
-    },
-  ];
 
   const handleNavigationOnClick = (clickType: "back" | "next") => {
     clickType === "next"

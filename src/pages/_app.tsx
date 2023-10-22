@@ -15,7 +15,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
     <SessionProvider session={session}>
       <Provider>
         <Navbar />
-        <main className="flex min-h-screen flex-col items-center justify-center text-white shadow-bgShadow">
+        <main className="relative top-4 flex min-h-screen flex-col items-center justify-center text-white shadow-bgShadow">
           <Component {...pageProps} />
         </main>
       </Provider>

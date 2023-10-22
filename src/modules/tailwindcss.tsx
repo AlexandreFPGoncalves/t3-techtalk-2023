@@ -4,54 +4,13 @@ import { useNavigationStore } from "@/store";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 import Image from "next/image";
-import { snippets } from "@/utils/snippets";
-import { ModuleScreen } from "@/utils/types";
+import { textResources } from "@/utils/resources";
 
 export const TailwindCssModule = () => {
+  const { tailwindResources: resources } = textResources;
   const [internalStep, setInternalStep] = useState<number>(0);
   const { currentStep, decrementCurrentStep, incrementCurrentStep } =
     useNavigationStore();
-
-  const resources: ModuleScreen[] = [
-    {
-      title: "TailwindCSS",
-      intro:
-        "O TailwindCSS é uma framework de design para criação de UI responsivas e modernas para projetos web. Ao contrário do Bootstrap que oferece componentes, este fornece classes utilitárias de baixo nível que podem ser aplicadas diretamente aos elementos HTML",
-      description:
-        "Classes estas que cobrem desde espaçamento e tipografia até cores e posicionamento, desta forma, estilizar o conteúdo é muito mais eficiente e flexível",
-    },
-    {
-      title: "Classes Utilitárias",
-      intro:
-        "Como referido anteriormente a framework oferece uma variedade de classes utilitárias que podem ser aplicadas diretamente aos elementos HTML",
-      snippet: snippets.tailwindcssClasses,
-    },
-    {
-      title: "Responsividade",
-      intro:
-        "A framework possui classes responsivas que permitem ajustar a estilização dependentemente do tamanho do ecrã no qual a aplicação esta a ser renderizada",
-      snippet: snippets.tailwindcssResponsiveness,
-    },
-    {
-      title: "Plugins",
-
-      intro:
-        "O Tailwind CSS possui um rico ecossistema de plugins e extensões que podem ser adicionados para melhorar a sua funcionalidade. Por exemplo, o plugin oficial Tailwind CSS Typography fornece um conjunto de classes relacionadas à tipografia.",
-      description:
-        "Existem diversos plugins criados pela comunidade que adicionam recursos extras, como estilos de terceiros e animações, para usar um plugin, bastante fazer a instalação do mesmo e adiciona-lo ao ficheiro tailwind.config.js na secção de plugins",
-    },
-    {
-      title: "Bibliotecas de Componentes",
-      intro:
-        "Embora o Tailwind CSS não ofereça componentes prontos a utilizar, é possível usar algumas bibliotecas de componentes como o TailwindUI ou a DaisyUI",
-    },
-    {
-      title: "Configuração",
-      intro:
-        "O Tailwind é altamente configurável. Os desenvolvedores podem personalizar as classes já existentes ou estender os seus próprios estilos para facilitar no desenvolvimento da aplicação",
-      snippet: snippets.tailwindcssConfig,
-    },
-  ];
 
   const handleNavigationOnClick = (clickType: "back" | "next") => {
     clickType === "next"

@@ -71,9 +71,7 @@ export const LeadingScreenModule: React.FC = () => {
         {/* Title */}
         <h3 className="bold bg-gradient-to-r from-[#4165FF] to-[#7241FF] bg-clip-text text-center text-3xl font-bold text-transparent sm:text-5xl md:text-6xl lg:text-7xl">
           {resources.title.p1}
-          <span className=" font-semibold text-white">
-            {resources.title.p2}
-          </span>
+          <span className="font-semibold text-white">{resources.title.p2}</span>
           <p className=" font-semibold text-white">{resources.title.p3}</p>
         </h3>
 

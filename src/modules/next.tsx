@@ -4,82 +4,16 @@ import { useNavigationStore } from "@/store";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 import Image from "next/image";
-import { snippets } from "@/utils/snippets";
-import type { ModuleScreen } from "@/utils/types";
+import { textResources } from "@/utils/resources";
 
 export const NextModule = () => {
+  const { nextResources: resources } = textResources;
   const [internalStep, setInternalStep] = useState<number>(0);
   const { currentStep, decrementCurrentStep, incrementCurrentStep } =
     useNavigationStore();
 
-  const resources: ModuleScreen[] = [
-    {
-      title: "Next.Js",
-      intro:
-        "O Next.js é um framework popular do React que facilita a construção de aplicações web rápidas e prontas para produção. Esta oferece várias funcionalidades e otimizações prontas para uso, como renderização do lado do servidor, divisão automática de código e navegação fácil do lado do cliente",
-      description:
-        "É utilizado por algumas das maiores empresas do mundo, esta ferramenta permite a criação de aplicações full-stack. Usa “blocos de construção” para agilizar a criação de aplicações web. Esta framework pode ser utilizada para desenvolvimento individual ou ser escalado numa grande equipa",
-    },
-    {
-      title: "Server-side Rendering",
-      intro:
-        "A Renderização do Lado do Servidor (SSR), permite que se renderize componentes React do lado do servidor. Isto melhora o desempenho do carregamento inicial da página e é benéfico para o Otimização para motores de busca (SEO)",
-    },
-    {
-      title: "Divisão Automática de Código",
-      intro:
-        "O Next.js divide automaticamente o código JavaScript em partes menores. Isso reduz a carga inicial e melhora o desempenho da aplicação",
-    },
-    {
-      title: "Components",
-      intro:
-        "O Next.js fornece vários componentes para facilitar o desenvolvimento da aplicação",
-      description:
-        "O component Link do Next por exemplo facilita a navegação do lado do cliente, tornando a construção e a navegação entre páginas mais fáceis",
-      snippet: snippets.nextLinkComponent,
-    },
-    {
-      title: "Geração de Site Estático",
-      intro:
-        "Podem-se gerar arquivos HTML estáticos no momento da construção para partes da aplicação, o que é excelente para sites orientados por conteúdo",
-    },
-    {
-      title: "API Routes",
-      intro:
-        "O Next.js facilita a criação de rotas de API, que podem ser usadas para funções serverless ou para encontrar dados dentro da aplicação",
-    },
-    {
-      title: "Routing",
-      intro:
-        "O Next.js utiliza um sistema de roteamento baseado em arquivos, onde arquivos e pastas no diretório de páginas determinam as rotas na aplicação",
-    },
-    {
-      title: "Suporte Integrado para CSS",
-      intro:
-        "A framework conta também com suporte integrado para CSS-in-JS com styled-components ou mesmo com a importação de arquivos CSS e SCSS para a estilização da aplicação",
-    },
-    {
-      title: "Configuração Zero",
-      intro:
-        "O Next.js é opinativo e vem com padrões sensatos, porém qualquer funcionalidade da framework pode ser configurada para se enquadrar melhor no objetivo pretendido durante o tempo de desenvolvimento de determina aplicação",
-    },
-    {
-      title: "Configuração de um projeto Next",
-      intro:
-        "Para a criação e inicialização de um novo projeto utilizando a framework Next.Js podemos seguir os seguintes comandos",
-      description:
-        "Aqui é criada a nossa aplicação, para a qual navegamos e inicializamos o servidor de desenvolvimento que fica disponível em https://localhost:3000",
-      snippet: snippets.createNextApplication,
-    },
-    {
-      title: "Criação de uma página Web",
-      intro:
-        "Já para o desenvolvimento de uma página web com o uso dos componentes disponibilizados pelo next podemos seguir este exemplo",
-      snippet: snippets.nextHomeScreen,
-    },
-  ];
-
   const handleNavigationOnClick = (clickType: "back" | "next") => {
+    const { nextResources: resources } = textResources;
     clickType === "next"
       ? internalStep === resources.length - 1
         ? incrementCurrentStep(currentStep)

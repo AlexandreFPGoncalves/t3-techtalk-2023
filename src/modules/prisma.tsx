@@ -4,33 +4,13 @@ import { useNavigationStore } from "@/store";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 import Image from "next/image";
-import { snippets } from "@/utils/snippets";
-import { ModuleScreen } from "@/utils/types";
+import { textResources } from "@/utils/resources";
 
 export const PrismaModule = () => {
+  const { prismaResources: resources } = textResources;
   const [internalStep, setInternalStep] = useState<number>(0);
   const { currentStep, decrementCurrentStep, incrementCurrentStep } =
     useNavigationStore();
-
-  const resources: ModuleScreen[] = [
-    {
-      title: "Prisma",
-      intro:
-        "O Prisma é uma camada moderna para aceder e manipular dados de uma base de dados. Este Object-Relational Mapping (ORM) simplifica a interação com as base de dados das aplicações web e mobile. O prisma é projetado para ser usado com o Javascript e Typescript",
-      description:
-        "Este é uma escolha popular entre desenvolvedores para trabalhar com base de dados relacionais de forma eficiente e segura",
-    },
-    {
-      title: "Type-Safe Queries",
-      intro:
-        "O Prisma gera tipagens automaticamente com base no seu modelo de base de dados, isto signafica que o desenvolvimento da base de dados é feita de forma segura e sem erros de tipos",
-    },
-    {
-      title: "Database Agnostic",
-      intro:
-        "O Prisma gera tipagens automaticamente com base no seu modelo de base de dados, isto signafica que o desenvolvimento da base de dados é feita de forma segura e sem erros de tipos",
-    },
-  ];
 
   const handleNavigationOnClick = (clickType: "back" | "next") => {
     clickType === "next"

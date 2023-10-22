@@ -4,15 +4,13 @@ import { useNavigationStore } from "@/store";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 import Image from "next/image";
-import { snippets } from "@/utils/snippets";
-import type { ModuleScreen } from "@/utils/types";
+import { textResources } from "@/utils/resources";
 
 export const NextAuthModule = () => {
+  const { nextAuthResources: resources } = textResources;
   const [internalStep, setInternalStep] = useState<number>(0);
   const { currentStep, decrementCurrentStep, incrementCurrentStep } =
     useNavigationStore();
-
-  const resources: ModuleScreen[] = [{ title: "NextAuthJs", intro: "A" }];
 
   const handleNavigationOnClick = (clickType: "back" | "next") => {
     clickType === "next"
@@ -74,10 +72,10 @@ export const NextAuthModule = () => {
 
           <div className="flex h-2/3 w-1/3 justify-center">
             <Image
-              src={images.robot}
+              src={images.nextauth}
               alt="stars"
-              width={397}
-              height={310}
+              width={327}
+              height={361}
               className="animate-float md:flex until-sm:hidden"
             />
           </div>

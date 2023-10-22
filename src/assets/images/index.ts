@@ -10,6 +10,8 @@ import next from "./next.png";
 import typescript from "./typescript.png";
 import tailwindcss from "./tailwind.svg";
 import prisma from "./prisma.png";
+import nextauth from "./nextauth.png";
+import tRPC from "./tRPC.svg";
 
 export const images = {
   itsector,
@@ -24,4 +26,6 @@ export const images = {
   typescript,
   tailwindcss: tailwindcss as string,
   prisma,
+  nextauth,
+  tRPC: tRPC as string,
 };
