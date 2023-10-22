@@ -80,7 +80,7 @@ export const TRPCModule: React.FC = () => {
     <Hero
       onNext={() => handleNavigationOnClick("next")}
       onBack={() => handleNavigationOnClick("back")}
-      activeStep={2}
+      activeStep={{ id: 4, stepName: "tRPC" }}
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}

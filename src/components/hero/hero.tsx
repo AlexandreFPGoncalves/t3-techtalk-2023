@@ -8,7 +8,7 @@ interface HeroProps {
   children: React.ReactNode;
   onBack?: () => void;
   onNext?: () => void;
-  activeStep?: number;
+  activeStep?: { id: number; stepName?: string };
 }
 
 export const Hero: React.FC<HeroProps> = ({

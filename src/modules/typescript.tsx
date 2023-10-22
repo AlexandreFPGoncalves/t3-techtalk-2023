@@ -5,23 +5,41 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 import Image from "next/image";
 import { snippets } from "@/utils/snippets";
-
-interface TypescriptResources {
-  title: string;
-}
+import type { ModuleScreen } from "@/utils/types";
 
 export const TypeScriptModule = () => {
   const [internalStep, setInternalStep] = useState<number>(0);
   const { currentStep, decrementCurrentStep, incrementCurrentStep } =
     useNavigationStore();
 
-  const resources: TypescriptResources = {
-    title: "Typescript",
-  };
+  const resources: ModuleScreen[] = [
+    {
+      title: "Typescript",
+      intro:
+        "O Javascript é uma terra sem grandes regras, podemos referenciar variáveis que não existem ou até mesmo trabalhar com objetos sem forma definida, o código é então interpretado por um browser, mas caso exista algum erro só vai ser descoberto quando a aplicação estiver a correr, o Typescript previne estes erros de sequer acontecerem estendendo o Javascript com tipagens",
+      description:
+        "Tipagens estas que fazem parte do superset que é um conjunto de ferramentas montado em cima do Javascript onde são devolvidas tipagens estáticas, parâmetros e retornos",
+      snippet: snippets.typescriptErrors,
+    },
+    {
+      title: "Configuração",
+      intro:
+        "O Typescript permite também, através do ficheiro tsconfig, criar uma experiência única de utilização para cada projeto e desenvolvedor modificando as regras de utilização do mesmo",
+      description:
+        "Uma das funcionalidades principais do Typescript é a tipagem estática que conta com explicit e implicit types",
+      snippet: snippets.typescriptStaticTypes,
+    },
+    {
+      title: "Utilização do Typescript",
+      intro:
+        "Neste pequeno exemplo podemos ver a diferença de dois componentes onde um tem acesso a tipagem definida por nós e algumas props são marcadas como sendo obrigatórias",
+      snippet: snippets.typescriptExample,
+    },
+  ];
 
   const handleNavigationOnClick = (clickType: "back" | "next") => {
     clickType === "next"
-      ? internalStep === 1
+      ? internalStep === resources.length - 1
         ? incrementCurrentStep(currentStep)
         : setInternalStep(internalStep + 1)
       : internalStep === 0
@@ -33,7 +51,7 @@ export const TypeScriptModule = () => {
     <Hero
       onNext={() => handleNavigationOnClick("next")}
       onBack={() => handleNavigationOnClick("back")}
-      activeStep={3}
+      activeStep={{ id: 4, stepName: "Typescript" }}
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
@@ -56,19 +74,22 @@ export const TypeScriptModule = () => {
                 transition={{ duration: 0.2 }}
                 className="h-full"
               >
-                {internalStep === 0 ? (
+                <h2 className="bg-gradient-to-r from-white to-lightgrey bg-clip-text text-4xl font-bold text-transparent">
+                  {resources[internalStep]?.title}
+                </h2>
+                <p className="mt-4">{resources[internalStep]?.intro}</p>
+                {resources[internalStep]?.description && (
                   <>
-                    <h2 className="bg-gradient-to-r from-white to-lightgrey bg-clip-text text-4xl font-bold text-transparent">
-                      {resources.title}
-                    </h2>
+                    <Divider />
+                    <p className="mt-4">
+                      {resources[internalStep]?.description}
+                    </p>
                   </>
-                ) : (
-                  <>
-                    <h2 className="bg-gradient-to-r from-white to-lightgrey bg-clip-text text-4xl font-bold text-transparent">
-                      {resources.title}
-                    </h2>
-                    <h3>XD</h3>
-                  </>
+                )}
+                {!!resources[internalStep]?.snippet && (
+                  <CodeSnippet
+                    snippet={resources[internalStep]?.snippet ?? ""}
+                  />
                 )}
               </motion.div>
             </AnimatePresence>
@@ -76,7 +97,7 @@ export const TypeScriptModule = () => {
 
           <div className="flex h-2/3 w-1/3 justify-center">
             <Image
-              src={images.robot}
+              src={images.typescript}
               alt="stars"
               width={397}
               height={310}

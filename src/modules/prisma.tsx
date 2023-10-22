@@ -5,23 +5,36 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 import Image from "next/image";
 import { snippets } from "@/utils/snippets";
-
-interface PrismaResources {
-  title: string;
-}
+import { ModuleScreen } from "@/utils/types";
 
 export const PrismaModule = () => {
   const [internalStep, setInternalStep] = useState<number>(0);
   const { currentStep, decrementCurrentStep, incrementCurrentStep } =
     useNavigationStore();
 
-  const resources: PrismaResources = {
-    title: "TailwindCss",
-  };
+  const resources: ModuleScreen[] = [
+    {
+      title: "Prisma",
+      intro:
+        "O Prisma é uma camada moderna para aceder e manipular dados de uma base de dados. Este Object-Relational Mapping (ORM) simplifica a interação com as base de dados das aplicações web e mobile. O prisma é projetado para ser usado com o Javascript e Typescript",
+      description:
+        "Este é uma escolha popular entre desenvolvedores para trabalhar com base de dados relacionais de forma eficiente e segura",
+    },
+    {
+      title: "Type-Safe Queries",
+      intro:
+        "O Prisma gera tipagens automaticamente com base no seu modelo de base de dados, isto signafica que o desenvolvimento da base de dados é feita de forma segura e sem erros de tipos",
+    },
+    {
+      title: "Database Agnostic",
+      intro:
+        "O Prisma gera tipagens automaticamente com base no seu modelo de base de dados, isto signafica que o desenvolvimento da base de dados é feita de forma segura e sem erros de tipos",
+    },
+  ];
 
   const handleNavigationOnClick = (clickType: "back" | "next") => {
     clickType === "next"
-      ? internalStep === 1
+      ? internalStep === resources.length - 1
         ? incrementCurrentStep(currentStep)
         : setInternalStep(internalStep + 1)
       : internalStep === 0
@@ -33,7 +46,7 @@ export const PrismaModule = () => {
     <Hero
       onNext={() => handleNavigationOnClick("next")}
       onBack={() => handleNavigationOnClick("back")}
-      activeStep={3}
+      activeStep={{ id: 4, stepName: "Prisma" }}
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
@@ -56,19 +69,22 @@ export const PrismaModule = () => {
                 transition={{ duration: 0.2 }}
                 className="h-full"
               >
-                {internalStep === 0 ? (
+                <h2 className="bg-gradient-to-r from-white to-lightgrey bg-clip-text text-4xl font-bold text-transparent">
+                  {resources[internalStep]?.title}
+                </h2>
+                <p className="mt-4">{resources[internalStep]?.intro}</p>
+                {resources[internalStep]?.description && (
                   <>
-                    <h2 className="bg-gradient-to-r from-white to-lightgrey bg-clip-text text-4xl font-bold text-transparent">
-                      {resources.title}
-                    </h2>
+                    <Divider />
+                    <p className="mt-4">
+                      {resources[internalStep]?.description}
+                    </p>
                   </>
-                ) : (
-                  <>
-                    <h2 className="bg-gradient-to-r from-white to-lightgrey bg-clip-text text-4xl font-bold text-transparent">
-                      {resources.title}
-                    </h2>
-                    <h3>XD</h3>
-                  </>
+                )}
+                {!!resources[internalStep]?.snippet && (
+                  <CodeSnippet
+                    snippet={resources[internalStep]?.snippet ?? ""}
+                  />
                 )}
               </motion.div>
             </AnimatePresence>
@@ -76,7 +92,7 @@ export const PrismaModule = () => {
 
           <div className="flex h-2/3 w-1/3 justify-center">
             <Image
-              src={images.robot}
+              src={images.prisma}
               alt="stars"
               width={397}
               height={310}

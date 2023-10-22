@@ -9,8 +9,9 @@ interface Steps {
 }
 
 interface StepperProps {
-  activeStep?: number;
+  activeStep: { id: number; stepName?: string };
 }
+
 const InterActionStep = () => {
   return (
     <div className="flex gap-2 until-md:flex-col">
@@ -27,16 +28,22 @@ const InterActionStep = () => {
   );
 };
 
-export const Stepper: React.FC<StepperProps> = ({ activeStep = 0 }) => {
+export const Stepper: React.FC<StepperProps> = ({ activeStep }) => {
   const [steps, setSteps] = useState<Steps[]>([
     { id: 1, name: "Hosts", isActive: false, isPast: false },
     { id: 2, name: "ReactJS", isActive: false, isPast: false },
     { id: 3, name: "Stack T3", isActive: false, isPast: false },
-    { id: 4, name: "Partilha de Recursos", isActive: false, isPast: false },
+    {
+      id: 4,
+      name: activeStep.stepName ? activeStep.stepName : "NextJS",
+      isActive: false,
+      isPast: false,
+    },
+    { id: 5, name: "Partilha de Recursos", isActive: false, isPast: false },
   ]);
 
   steps.find((step) => {
-    step.id === activeStep;
+    step.id === activeStep.id;
   });
 
   const updateSteps = (activeStep: number) => {
@@ -50,8 +57,8 @@ export const Stepper: React.FC<StepperProps> = ({ activeStep = 0 }) => {
   };
 
   useEffect(() => {
-    updateSteps(activeStep);
-  }, [activeStep]);
+    updateSteps(activeStep.id);
+  }, [activeStep.id]);
 
   return (
     <div className="relative top-[-2.4375rem] flex w-full flex-wrap items-center justify-center gap-4 until-md:flex-col until-lg:hidden">

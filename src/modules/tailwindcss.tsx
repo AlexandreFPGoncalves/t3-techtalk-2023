@@ -5,23 +5,57 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 import Image from "next/image";
 import { snippets } from "@/utils/snippets";
-
-interface TailwindCssResources {
-  title: string;
-}
+import { ModuleScreen } from "@/utils/types";
 
 export const TailwindCssModule = () => {
   const [internalStep, setInternalStep] = useState<number>(0);
   const { currentStep, decrementCurrentStep, incrementCurrentStep } =
     useNavigationStore();
 
-  const resources: TailwindCssResources = {
-    title: "TailwindCss",
-  };
+  const resources: ModuleScreen[] = [
+    {
+      title: "TailwindCSS",
+      intro:
+        "O TailwindCSS é uma framework de design para criação de UI responsivas e modernas para projetos web. Ao contrário do Bootstrap que oferece componentes, este fornece classes utilitárias de baixo nível que podem ser aplicadas diretamente aos elementos HTML",
+      description:
+        "Classes estas que cobrem desde espaçamento e tipografia até cores e posicionamento, desta forma, estilizar o conteúdo é muito mais eficiente e flexível",
+    },
+    {
+      title: "Classes Utilitárias",
+      intro:
+        "Como referido anteriormente a framework oferece uma variedade de classes utilitárias que podem ser aplicadas diretamente aos elementos HTML",
+      snippet: snippets.tailwindcssClasses,
+    },
+    {
+      title: "Responsividade",
+      intro:
+        "A framework possui classes responsivas que permitem ajustar a estilização dependentemente do tamanho do ecrã no qual a aplicação esta a ser renderizada",
+      snippet: snippets.tailwindcssResponsiveness,
+    },
+    {
+      title: "Plugins",
+
+      intro:
+        "O Tailwind CSS possui um rico ecossistema de plugins e extensões que podem ser adicionados para melhorar a sua funcionalidade. Por exemplo, o plugin oficial Tailwind CSS Typography fornece um conjunto de classes relacionadas à tipografia.",
+      description:
+        "Existem diversos plugins criados pela comunidade que adicionam recursos extras, como estilos de terceiros e animações, para usar um plugin, bastante fazer a instalação do mesmo e adiciona-lo ao ficheiro tailwind.config.js na secção de plugins",
+    },
+    {
+      title: "Bibliotecas de Componentes",
+      intro:
+        "Embora o Tailwind CSS não ofereça componentes prontos a utilizar, é possível usar algumas bibliotecas de componentes como o TailwindUI ou a DaisyUI",
+    },
+    {
+      title: "Configuração",
+      intro:
+        "O Tailwind é altamente configurável. Os desenvolvedores podem personalizar as classes já existentes ou estender os seus próprios estilos para facilitar no desenvolvimento da aplicação",
+      snippet: snippets.tailwindcssConfig,
+    },
+  ];
 
   const handleNavigationOnClick = (clickType: "back" | "next") => {
     clickType === "next"
-      ? internalStep === 1
+      ? internalStep === resources.length - 1
         ? incrementCurrentStep(currentStep)
         : setInternalStep(internalStep + 1)
       : internalStep === 0
@@ -33,7 +67,7 @@ export const TailwindCssModule = () => {
     <Hero
       onNext={() => handleNavigationOnClick("next")}
       onBack={() => handleNavigationOnClick("back")}
-      activeStep={3}
+      activeStep={{ id: 4, stepName: "TailwindCSS" }}
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
@@ -56,19 +90,22 @@ export const TailwindCssModule = () => {
                 transition={{ duration: 0.2 }}
                 className="h-full"
               >
-                {internalStep === 0 ? (
+                <h2 className="bg-gradient-to-r from-white to-lightgrey bg-clip-text text-4xl font-bold text-transparent">
+                  {resources[internalStep]?.title}
+                </h2>
+                <p className="mt-4">{resources[internalStep]?.intro}</p>
+                {resources[internalStep]?.description && (
                   <>
-                    <h2 className="bg-gradient-to-r from-white to-lightgrey bg-clip-text text-4xl font-bold text-transparent">
-                      {resources.title}
-                    </h2>
+                    <Divider />
+                    <p className="mt-4">
+                      {resources[internalStep]?.description}
+                    </p>
                   </>
-                ) : (
-                  <>
-                    <h2 className="bg-gradient-to-r from-white to-lightgrey bg-clip-text text-4xl font-bold text-transparent">
-                      {resources.title}
-                    </h2>
-                    <h3>XD</h3>
-                  </>
+                )}
+                {!!resources[internalStep]?.snippet && (
+                  <CodeSnippet
+                    snippet={resources[internalStep]?.snippet ?? ""}
+                  />
                 )}
               </motion.div>
             </AnimatePresence>
@@ -76,7 +113,7 @@ export const TailwindCssModule = () => {
 
           <div className="flex h-2/3 w-1/3 justify-center">
             <Image
-              src={images.robot}
+              src={images.tailwindcss}
               alt="stars"
               width={397}
               height={310}
