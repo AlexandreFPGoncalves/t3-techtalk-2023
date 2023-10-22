@@ -10,6 +10,7 @@ import { TypeScriptModule } from "./typescript";
 import { TailwindCssModule } from "./tailwindcss";
 import { NextAuthModule } from "./nextAuth";
 import { TRPCModule } from "./tRPC";
+import { EndingScreenModule } from "./endingScreen";
 
 export const steps: StepsController[] = [
   { id: 0, content: <LeadingScreenModule /> },
@@ -22,4 +23,5 @@ export const steps: StepsController[] = [
   { id: 7, content: <PrismaModule /> },
   { id: 8, content: <NextAuthModule /> },
   { id: 9, content: <TRPCModule /> },
+  { id: 10, content: <EndingScreenModule /> },
 ];

@@ -96,6 +96,69 @@ export default {
     }),],} 
     satisfies Config;`;
 
+const nextauthInstallation = `npm i next-auth
+# or
+yarn add next-auth`;
+
+const nextauthConfiguration = `import NextAuth from "next-auth"
+import Providers from "next-auth/providers"
+
+export default NextAuth({
+  providers: [
+    Providers.Google({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+    // Additional authentication providers if needed
+  ],
+  // Other Configuration options
+})`;
+
+const nextauthCustomProvider = `import { CustomProvider } from "next-auth/providers"
+
+const options = {
+  credentials: {
+    username: { label: "Username", type: "text" },
+    password: { label: "Password", type : "password" }
+  },
+  async authorize(credentials) {
+    // Add your authentication logic here
+    const user = { id: 1, name: "Humberto" }
+    user ? Promise.resolve(user) : Promise.resolve(null)
+  }
+}
+
+export default CustomProvider(options)`;
+
+const nextauthGetSession = `import { getSession } from "next-auth/react"
+
+export default async (req, res) => {
+  const session = await getSession({ req })
+
+  if(session){
+    // User is authenticated
+  } else {
+    // User is not authenticated
+  }
+}`;
+
+const nextauthUserData = `import { getSession } from "next-auth/react"
+
+function MyPage() {
+  const { data: session } = useSession()
+
+  return (
+    <div>
+    {session ? (
+      <p>Welcome, {session.user.name}</p>
+    ): (
+      <p>You are not logged in</p>
+    )}
+    </div>
+  )
+}
+`;
+
 export const snippets = {
   reactCounterSnippet,
   createT3App,
@@ -108,4 +171,9 @@ export const snippets = {
   tailwindcssClasses,
   tailwindcssResponsiveness,
   tailwindcssConfig,
+  nextauthInstallation,
+  nextauthConfiguration,
+  nextauthCustomProvider,
+  nextauthGetSession,
+  nextauthUserData,
 };

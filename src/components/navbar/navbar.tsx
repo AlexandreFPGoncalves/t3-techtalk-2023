@@ -23,7 +23,7 @@ export const Navbar: React.FC = () => {
   const navbarPaths: Path[] = [
     { name: "Home", href: "/" },
     { name: "Docs", href: "/docs" },
-    { name: "Tools", href: "/tools" },
+    { name: "Resources", href: "/resources" },
   ];
 
   const resources: NavbarResouces = { title: "ITSector" };

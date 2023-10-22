@@ -39,7 +39,6 @@ export const Stepper: React.FC<StepperProps> = ({ activeStep }) => {
       isActive: false,
       isPast: false,
     },
-    { id: 5, name: "Partilha de Recursos", isActive: false, isPast: false },
   ]);
 
   steps.find((step) => {

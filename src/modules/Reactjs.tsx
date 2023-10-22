@@ -1,4 +1,4 @@
-import { CodeSnippet, Divider, Hero, Link } from "@/components";
+import { CodeSnippet, Divider, Hero } from "@/components";
 import { useNavigationStore } from "@/store";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
