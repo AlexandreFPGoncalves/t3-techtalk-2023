@@ -4,10 +4,11 @@
 
 body {
   @apply bg-bg bg-[url("/bg-blur.svg")] bg-cover bg-top bg-no-repeat font-Figtree 2xl:bg-center;
+  overflow: hidden;
 }
 
 *::-webkit-scrollbar {
-  width: 4px;
+  width: 0px;
   @apply bg-bg;
 }
 

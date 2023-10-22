@@ -1,58 +1,44 @@
 import React from "react";
-import { BlogComponents, BlogTypography, TriangleButton } from "@/components";
+import { BlogTypography, Divider } from "@/components";
 
 interface BlogProps {
   blogEntries: BlogPostProps[];
-  handleArticleVisibilityOnClick: (id: string) => void;
 }
 export interface BlogPostProps {
-  id: string;
-  title?: string;
-  content?: string | React.ReactNode;
-  children?: React.ReactNode;
-  hideFlag?: boolean;
-  visibility?: boolean;
+  title: string;
+  subtitle?: string;
+  description?: string;
+  additionalContent?: React.ReactNode;
+  divider?: boolean;
 }
 
-export const Blog: React.FC<BlogProps> = ({
-  blogEntries,
-  handleArticleVisibilityOnClick,
-}) => {
+export const Blog: React.FC<BlogProps> = ({ blogEntries }) => {
   return (
-    <div className="flex flex-col gap-3">
-      {blogEntries.map((entry) => {
+    <div className="mb-10 flex flex-col gap-3 border-l border-l-darkblue">
+      {blogEntries.map((post, i) => {
         return (
-          <>
-            {!entry.hideFlag && (
-              <div className="flex flex-row">
-                {entry.title && (
-                  <BlogComponents.Section content={entry.title} />
-                )}
-                <TriangleButton
-                  onClick={() => handleArticleVisibilityOnClick(entry.id)}
-                  triangleUp={!entry.visibility}
-                />
-              </div>
-            )}
-
-            {entry.visibility && (
-              <div className="flex flex-row">
-                <div className="ml-[0.38rem] w-[1px] rounded bg-zinc-600" />
-
-                <div className="ml-10 flex w-full max-w-xl flex-col gap-3 border-b border-zinc-600 py-3">
-                  <div key={entry.id}>
-                    {entry.title && (
-                      <BlogTypography.Title content={entry.title} />
-                    )}
-                    {entry.content && (
-                      <BlogTypography.Text content={entry.content} />
-                    )}
-                    {entry.children && entry.children}
-                  </div>
+          <div key={i}>
+            <div className="ml-10 flex max-w-2xl flex-col gap-3 py-3">
+              <div className="flex flex-col gap-1">
+                <div>
+                  <h1 className={"text-3xl font-bold tracking-wide"}>
+                    {post.title}
+                  </h1>
+                  {post.subtitle && (
+                    <h1 className={"text-xl font-bold tracking-wide text-grey"}>
+                      {post.subtitle}
+                    </h1>
+                  )}
                 </div>
+
+                {post.description && (
+                  <BlogTypography.Text content={post.description} />
+                )}
+                {post.additionalContent && post.additionalContent}
               </div>
-            )}
-          </>
+              {post.divider && <Divider />}
+            </div>
+          </div>
         );
       })}
     </div>

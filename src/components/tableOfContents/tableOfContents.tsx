@@ -16,17 +16,18 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
 }) => {
   return (
     <StickyBox
-      offsetTop={100}
-      className="z-50 flex flex-col rounded border bg-black pb-2 text-lg shadow-bgShadow"
+      offsetTop={0}
+      offsetBottom={50}
+      className="flex flex-col rounded-2xl border border-darkblue bg-bg pb-2 text-lg shadow-bgShadow"
     >
-      <strong className="border-b px-4 py-2 font-bold">
+      <h3 className="text-md border-b border-darkblue px-4 py-2 font-semibold">
         Table Of Contents
-      </strong>
+      </h3>
       <div className="pt-2">
         {sections.map((section) => (
           <div className="flex flex-col" key={section.path}>
             <a
-              className="p-2 py-1 font-semibold hover:bg-blue/20"
+              className="px-4 py-1 text-[16px] font-semibold hover:bg-purple/20"
               href={section.path}
             >
               {section.title}
@@ -35,7 +36,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
               <ul key={subsection.path}>
                 <li>
                   <a
-                    className="block p-2 py-0.5 pl-6 hover:bg-blue/20"
+                    className="block p-2 py-0.5 pl-8 text-[14px] text-grey hover:bg-purple/20"
                     href={subsection.path}
                   >
                     {subsection.title}

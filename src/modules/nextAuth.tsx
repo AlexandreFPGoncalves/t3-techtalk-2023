@@ -4,56 +4,13 @@ import { useNavigationStore } from "@/store";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 import Image from "next/image";
-import { snippets } from "@/utils/snippets";
-import type { ModuleScreen } from "@/utils/types";
+import { textResources } from "@/utils/resources";
 
 export const NextAuthModule = () => {
+  const { nextAuthResources: resources } = textResources;
   const [internalStep, setInternalStep] = useState<number>(0);
   const { currentStep, decrementCurrentStep, incrementCurrentStep } =
     useNavigationStore();
-
-  const resources: ModuleScreen[] = [
-    {
-      title: "NextAuthJs",
-      intro:
-        "NextAuth.js é uma biblioteca de autenticação open source para o Next.Js. Esta simplifica a implementação de autenticação nas aplicações, fornecendo um conjunto de utilitários e um fluxo de autenticação flexível",
-      description:
-        "Suporta vários providers de autenticação, incluindo OAuth, JWT e outros, que facilitam a integração com logins sociais, providers de identidade externos ou com o próprio sistema de autenticação personalizado",
-    },
-    {
-      title: "Instalação",
-      intro:
-        "Podemos usar vários providers de autenticação, como o Google, Facebook, GitHub, etc. Para configurar um provider, precisamos de obter os IDs de cliente e segredos do serviço respetivo e adicioná-los às variáveis de ambiente",
-      description:
-        "Para começar, precisamos de instalar a biblioteca NextAuth.js em um projeto Next.js. Para tal podemos fazer isso com o seguinte comando:",
-      snippet: snippets.nextauthInstallation,
-    },
-    {
-      title: "Configuração",
-      intro:
-        "O NextAuth.js requer configuração no projeto Next.js. Cria-se um arquivo chamado next-auth.js na raiz do projeto para definir provedores de autenticação e opções. Aqui está um exemplo de configuração simples:",
-
-      snippet: snippets.nextauthConfiguration,
-    },
-    {
-      title: "Custom Provider",
-      intro:
-        "O NextAuth.js também suporta autenticação personalizada. Pode-se implementar uma lógica própria de autenticação ao utilizar um provider personalizado",
-      snippet: snippets.nextauthCustomProvider,
-    },
-    {
-      title: "Proteção de Rotas",
-      intro:
-        "Para proteger rotas ou páginas específicas, usamos o middleware de autenticação integrado do NextAuth.js. Por exemplo, em rotas API",
-      snippet: snippets.nextauthGetSession,
-    },
-    {
-      title: "Informação do User",
-      intro:
-        "Com a utilização do NextAuth.Js é possivel e de maneira simples ter acesso às informações do usuário e aos dados da sessão nas páginas Next.Js",
-      snippet: snippets.nextauthUserData,
-    },
-  ];
 
   const handleNavigationOnClick = (clickType: "back" | "next") => {
     clickType === "next"

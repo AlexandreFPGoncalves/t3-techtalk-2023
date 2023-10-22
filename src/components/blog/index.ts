@@ -1,14 +1,9 @@
-import { HorizontalDivider, Link, Section } from "./blog.components";
-import { Subtitle, Text, Title } from "./blog.typography";
-
-export const BlogComponents = {
-  Section,
-  HorizontalDivider,
-  Link,
-};
+import { Text, Link, Subtitle } from "./blog.typography";
 
 export const BlogTypography = {
   Text,
-  Title,
+  Link,
   Subtitle,
 };
+
+export * from "./blog";

@@ -4,53 +4,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { images } from "@/assets";
 import Image from "next/image";
-import { snippets } from "../utils/snippets";
-import { ModuleScreen } from "@/utils/types";
+import { textResources } from "@/utils/resources";
 
 export const TRPCModule: React.FC = () => {
+  const { tRPCResources: resources } = textResources;
+
   const [internalStep, setInternalStep] = useState<number>(0);
   const { currentStep, decrementCurrentStep, incrementCurrentStep } =
     useNavigationStore();
-
-  const resources: ModuleScreen[] = [
-    {
-      title: "tRPC",
-      intro:
-        "O tRPC é uma biblioteca de código aberto para construir APIs em Node.js e JavaScript. O nome tRPC significa Typescript Remote Procedure Call",
-      description:
-        "Esta biblioteca foi projetada para simplificar o desenvolvimento de APIs em aplicações React com TypeScript",
-    },
-    {
-      title: "Tipagem Forte",
-      intro:
-        "O tRPC utiliza tipagem forte por meio do TypeScript. Isso significa que os tipos de dados são verificados em tempo de compilação, ajudando a evitar erros comuns durante o desenvolvimento",
-    },
-    {
-      title: "Integração com React",
-      intro:
-        "O tRPC é especialmente voltado para aplicações React. Ele oferece um conjunto de hooks personalizados que facilitam a integração das suas APIs com componentes React",
-    },
-    {
-      title: "Autenticação e Autorização",
-      intro:
-        "O tRPC suporta autenticação e autorização de maneira flexível. É possível definir políticas de acesso para controlar quem pode acessar cada endpoint",
-    },
-    {
-      title: "Validação de Dados",
-      intro:
-        "Este oferece suporte à validação de dados que entram e saem, garantindo assim que os estes estejam corretos e seguros",
-    },
-    {
-      title: "Documentação Automática",
-      intro:
-        "O tRPC gera automaticamente documentação, facilitando assim a integração e entendimento de qualquer desenvolvedor de como utiliza-la",
-    },
-    {
-      title: "Performance",
-      intro:
-        "O tRPC é projetado para ser eficiente em termos de desempenho, minimizando uses desnecessários e otimizando consultas",
-    },
-  ];
 
   const handleNavigationOnClick = (clickType: "back" | "next") => {
     clickType === "next"
