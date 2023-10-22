@@ -68,7 +68,7 @@ export const ReactjsModule: React.FC = () => {
 
   const handleNavigationOnClick = (clickType: "back" | "next") => {
     clickType === "next"
-      ? internalStep === 6
+      ? internalStep === resources.length - 1
         ? incrementCurrentStep(currentStep)
         : setInternalStep(internalStep + 1)
       : internalStep === 0
@@ -80,7 +80,7 @@ export const ReactjsModule: React.FC = () => {
     <Hero
       onNext={() => handleNavigationOnClick("next")}
       onBack={() => handleNavigationOnClick("back")}
-      activeStep={2}
+      activeStep={{ id: 2 }}
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}

@@ -55,7 +55,7 @@ export const T3StackModule: React.FC = () => {
     <Hero
       onNext={() => handleNavigationOnClick("next")}
       onBack={() => handleNavigationOnClick("back")}
-      activeStep={3}
+      activeStep={{ id: 3 }}
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}

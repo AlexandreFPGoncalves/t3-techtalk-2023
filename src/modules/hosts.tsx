@@ -38,7 +38,7 @@ export const HostsModule: React.FC = () => {
   };
 
   return (
-    <Hero activeStep={1}>
+    <Hero activeStep={{ id: 1 }}>
       <motion.div
         variants={container}
         initial="hidden"
