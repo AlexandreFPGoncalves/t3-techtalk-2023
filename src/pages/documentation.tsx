@@ -131,6 +131,30 @@ export default function Documentation() {
       ),
     },
     {
+      title: "Prisma",
+      additionalContent: (
+        <div className="mt-2 gap-2">
+          {textResources.prismaResources.map((resource, i) => (
+            <div
+              key={i}
+              id={resource.title}
+              className="flex flex-col gap-3 py-3"
+            >
+              <BlogTypography.Subtitle content={resource.title} />
+              <section>
+                <BlogTypography.Text content={resource.intro + "."} />
+                {resource.description && (
+                  <BlogTypography.Text content={resource.description + "."} />
+                )}
+              </section>
+              {resource.snippet && <CodeSnippet snippet={resource.snippet} />}
+              <Divider />
+            </div>
+          ))}
+        </div>
+      ),
+    },
+    {
       title: "NextAuth",
       additionalContent: (
         <div className="mt-2 gap-2">
