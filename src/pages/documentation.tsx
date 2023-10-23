@@ -19,7 +19,9 @@ export default function Documentation() {
               <BlogTypography.Subtitle content={resource.title} />
               <section>
                 <BlogTypography.Text content={resource.intro + "."} />
-                <BlogTypography.Text content={resource.description + "."} />
+                {resource.description && (
+                  <BlogTypography.Text content={resource.description + "."} />
+                )}
               </section>
               {resource.snippet && <CodeSnippet snippet={resource.snippet} />}
               <Divider />
@@ -69,7 +71,9 @@ export default function Documentation() {
               <BlogTypography.Subtitle content={resource.title} />
               <section>
                 <BlogTypography.Text content={resource.intro + "."} />
-                <BlogTypography.Text content={resource.description + "."} />
+                {resource.description && (
+                  <BlogTypography.Text content={resource.description + "."} />
+                )}
               </section>
               {resource.snippet && <CodeSnippet snippet={resource.snippet} />}
               <Divider />
@@ -91,7 +95,9 @@ export default function Documentation() {
               <BlogTypography.Subtitle content={resource.title} />
               <section>
                 <BlogTypography.Text content={resource.intro + "."} />
-                <BlogTypography.Text content={resource.description + "."} />
+                {resource.description && (
+                  <BlogTypography.Text content={resource.description + "."} />
+                )}
               </section>
               {resource.snippet && <CodeSnippet snippet={resource.snippet} />}
               <Divider />
@@ -113,7 +119,9 @@ export default function Documentation() {
               <BlogTypography.Subtitle content={resource.title} />
               <section>
                 <BlogTypography.Text content={resource.intro + "."} />
-                <BlogTypography.Text content={resource.description + "."} />
+                {resource.description && (
+                  <BlogTypography.Text content={resource.description + "."} />
+                )}
               </section>
               {resource.snippet && <CodeSnippet snippet={resource.snippet} />}
               <Divider />
@@ -135,7 +143,9 @@ export default function Documentation() {
               <BlogTypography.Subtitle content={resource.title} />
               <section>
                 <BlogTypography.Text content={resource.intro + "."} />
-                <BlogTypography.Text content={resource.description + "."} />
+                {resource.description && (
+                  <BlogTypography.Text content={resource.description + "."} />
+                )}
               </section>
               {resource.snippet && <CodeSnippet snippet={resource.snippet} />}
               <Divider />
@@ -157,7 +167,9 @@ export default function Documentation() {
               <BlogTypography.Subtitle content={resource.title} />
               <section>
                 <BlogTypography.Text content={resource.intro + "."} />
-                <BlogTypography.Text content={resource.description + "."} />
+                {resource.description && (
+                  <BlogTypography.Text content={resource.description + "."} />
+                )}
               </section>
               {resource.snippet && <CodeSnippet snippet={resource.snippet} />}
               <Divider />
